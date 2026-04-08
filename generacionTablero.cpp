@@ -7,8 +7,11 @@
 //============================================================================
 
 #include <iostream>
-#include <time.h>
 #include <vector>
+#include <cstdlib>
+#include <ctime>
+#include "generacionTablero.h"
+
 using namespace std;
 
 void pedirDimension(int *filas, int *columnas) {
@@ -27,7 +30,7 @@ void pedirDimension(int *filas, int *columnas) {
 
 void generarTablero(vector<vector<char>>& matriz, int filas, int columnas) {
 	/*
-	 * Funcion que se encarga de generar el tablero de forma aleatoria con caracteres ASCII (letras P, H, C o espacios)
+	 * Funcion que se encarga de generar el tablero con espacios
 	 * Parámetros:
 	 * vector<vector<char>>& matriz -> la direccion del tablero original
 	 * filas -> numero de filas del tablero
@@ -38,26 +41,12 @@ void generarTablero(vector<vector<char>>& matriz, int filas, int columnas) {
 	int i, j;
 	for (i = 0; i < filas; i++) {
 		for (j = 0; j < columnas; j++) {
-			/*Se genera un numero aleatorio entre 0 y 4, luego a cada número se le hace corresponder un caracter*/
-			int num = rand() % 4;
-
-			if (num == 0) {
-				matriz[i][j] = ' ';
-			}
-			else if (num == 1) {
-				matriz[i][j] = 'P';
-			}
-			else if (num == 2) {
-				matriz[i][j] = 'H';
-			}
-			else {
-				matriz[i][j] = 'C';
-			}
+			matriz[i][j] = ' ';
 		}
 	}
 }
 
-void imprimirTablero(vector<vector<char>>& matriz, int filas, int columnas) {
+void imprimirTablero(const vector<vector<char>>& matriz, int filas, int columnas) {
 	/*
 	 * Funcion que se encarga de imprimir el tablero en pantalla
 	 * Parámetros:
@@ -84,13 +73,6 @@ void imprimirTablero(vector<vector<char>>& matriz, int filas, int columnas) {
     cout << "+" << endl;
 }
 
-int main() {
-	srand(time(NULL));
-	int filas, columnas;
-	pedirDimension(&filas, &columnas);
-	cout << "Número de Filas: " << filas << " Número de Columnas: " << columnas<< endl;
-	vector<vector<char>> tablero(filas, vector<char>(columnas));
-	generarTablero(tablero, filas, columnas);
-	imprimirTablero(tablero, filas, columnas);
-	return 0;
-}
+
+
+
