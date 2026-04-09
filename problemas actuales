@@ -1,0 +1,12 @@
+Uso de rand:
+En un mismo ciclo, la función podría elegir al mismo herbívoro tres veces y dejar a otro sin comer.
+
+Problema de ciclos:
+En un solo ciclo (un "turno"), la planta debe poder crecer/reproducirse, el herbívoro debe intentar comer o moverse, y el carnívoro también.
+
+Soluciones posibles:
+1. Recorrer la matriz y buscar la entidad H o C:
+Problema de eso: Un recorrido normal siempre elegiría a la primera entidad que encuentre dependiendo de donde comience el for
+Buscar una manera de distinguir a los herbívoros que ya actuaron (comieron, llegaron, movieron) por ejemplo, guardando la posición en un vector [i,j,i,j,i,j]
+
+
