@@ -13,6 +13,7 @@
 #include <chrono>
 #include "generacionTablero.h"
 #include "movplantas.h"
+#include "movherbivoros.h"
 using namespace std;
 
 int ciclo = 0;
@@ -27,30 +28,46 @@ int main() {
     generarTablero(tablero, filas, columnas);
     aggPlantas(tablero, filas, columnas, 0);  // estado inicial: planta en posicion aleatoria
     imprimirTablero(tablero, filas, columnas);
+    cout << "Estado inicial" << endl;
 
     while(true) {
         ciclo++;
         std::this_thread::sleep_for(std::chrono::seconds(5));
 
-        // cada ciclo (5 seg): agrega una planta
-        aggPlantas(tablero, filas, columnas, ciclo);
-
-        // cada 2 ciclos (10 seg): reproduce plantas existentes
-        if (ciclo % 2 == 0) {
+        // cada 1 ciclos (5 seg): reproduce plantas
+        if (ciclo % 1 == 0) {
             reproducirPlantas(tablero, filas, columnas);
         }
 
-        // cada 2 ciclos (10 seg): agrega un herbivoro
+        // cada 2 ciclos (10 seg): llega un herbívoro al ecosistema
         if (ciclo % 2 == 0) {
-            //aggEntidad(tablero, filas, columnas, 'H');
+        	aggHerbivoros(tablero, filas, columnas);
         }
 
-        // cada 4 ciclos (20 seg): agrega un carnivoro
+        // cada 3 ciclos (15 seg): agrega un carnivoro
+        if (ciclo % 3 == 0) {
+        	if (herbivorosComen(tablero, filas, columnas)) {
+        		cout << "Un herbívoro consumió una planta." << endl;
+        	}
+        	else {
+        		if (herbivorosMueven(tablero, filas, columnas)) {
+        			cout << "Un herbívoro se movió a una celda vacía." << endl;
+        		}
+        	}
+        }
+
+        // cada 4 ciclos (10 seg): llega un carnivoro al ecosistema
         if (ciclo % 4 == 0) {
-            //aggEntidad(tablero, filas, columnas, 'C');
+
+        }
+
+
+        if (ciclo % 5 == 0) {
+        	// carnivorosComenHerbivoros
         }
 
         imprimirTablero(tablero, filas, columnas);
+
         cout << "Ciclo actual: " << ciclo << endl;
     }
 
