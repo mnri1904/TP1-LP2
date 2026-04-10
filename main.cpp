@@ -14,6 +14,8 @@
 #include "generacionTablero.h"
 #include "movplantas.h"
 #include "movherbivoros.h"
+#include "movcarnivoros.h"
+#include "Ecosistema.h"
 using namespace std;
 
 int ciclo = 0;
@@ -24,37 +26,17 @@ int main() {
     pedirDimension(&filas, &columnas);
     cout << "Número de Filas: " << filas << " Número de Columnas: " << columnas << endl;
 
-    vector<vector<char>> tablero(filas, vector<char>(columnas));
-    generarTablero(tablero, filas, columnas);
-    aggPlantas(tablero, filas, columnas, 0);  // estado inicial: planta en posicion aleatoria
-    imprimirTablero(tablero, filas, columnas);
-    cout << "Estado inicial" << endl;
+    Ecosistema eco (filas, columnas);
 
+    //aggPlantas(tablero, filas, columnas, 0);  // estado inicial: planta en posicion aleatoria
+    cout << "\n=== ESTADO INICIAL ===" << endl;
+    eco.aggPlantas();
+    eco.imprimirTablero();
     while(true) {
-        ciclo++;
-        std::this_thread::sleep_for(std::chrono::seconds(5));
+    	this_thread::sleep_for(chrono::seconds(5));
+    	eco.avanzarCiclo();
+    	eco.imprimirTablero();
 
-        cout << "\n=== CICLO " << ciclo << " ===" << endl;
-
-        if (reproducirPlantas(tablero, filas, columnas)) {
-        	cout << "Se reprodujo una planta" << endl;
-        }
-
-        if (turnoHerbivoros(tablero, filas, columnas)) {
-        	cout << "Un herbívoro actuó" << endl;
-        }
-
-        /*Flujo carnivoros*/
-
-        if (ciclo % 2 == 0) {
-        	aggHerbivoros(tablero, filas, columnas);
-        }
-
-        /*Agregar carnivoros en ciclo % 4 == 0*/
-
-        imprimirTablero(tablero, filas, columnas);
-
-        cout << "Ciclo actual: " << ciclo << endl;
     }
 
     return 0;
