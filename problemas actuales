@@ -9,4 +9,9 @@ Soluciones posibles:
 Problema de eso: Un recorrido normal siempre elegiría a la primera entidad que encuentre dependiendo de donde comience el for
 Buscar una manera de distinguir a los herbívoros que ya actuaron (comieron, llegaron, movieron) por ejemplo, guardando la posición en un vector [i,j,i,j,i,j]
 
+Pendientes:
+Implementar orientación a objetos
+Implementar lógica de reinicio
+Implementar mecánica de edad y energía
+
 
