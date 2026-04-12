@@ -28,51 +28,6 @@ void pedirDimension(int *filas, int *columnas) {
 	}while((*filas > 10 || *filas < 3) || (*columnas > 10 || *columnas < 3));
 }
 
-void generarTablero(vector<vector<char>>& matriz, int filas, int columnas) {
-	/*
-	 * Funcion que se encarga de generar el tablero con espacios
-	 * Parámetros:
-	 * vector<vector<char>>& matriz -> la direccion del tablero original
-	 * filas -> numero de filas del tablero
-	 * columnas -> numero de columnas del tablero
-	 *
-	 */
-
-	int i, j;
-	for (i = 0; i < filas; i++) {
-		for (j = 0; j < columnas; j++) {
-			matriz[i][j] = ' ';
-		}
-	}
-}
-
-void imprimirTablero(const vector<vector<char>>& matriz, int filas, int columnas) {
-	/*
-	 * Funcion que se encarga de imprimir el tablero en pantalla
-	 * Parámetros:
-	 * vector<vector<char>>& matriz -> la direccion del tablero original
-	 * filas -> numero de filas del tablero
-	 * columnas -> numero de columnas del tablero
-	 *
-	 */
-    for (int i = 0; i < filas; i++) {
-        for (int j = 0; j < columnas; j++) {
-            cout << "+---";
-        }
-        cout << "+" << endl;
-
-        for (int j = 0; j < columnas; j++) {
-            cout << "| " << matriz[i][j] << " ";
-        }
-        cout << "|" << endl;
-    }
-
-    for (int j = 0; j < columnas; j++) {
-        cout << "+---";
-    }
-    cout << "+" << endl;
-}
-
 
 
 

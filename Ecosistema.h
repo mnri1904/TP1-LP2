@@ -10,8 +10,6 @@
 
 #include <vector>
 #include <iostream>
-#include <thread>
-#include <chrono>
 using namespace std;
 
 class Ecosistema {
@@ -33,18 +31,16 @@ public:
 	void generarTablero();
 	void imprimirTablero() const;
 	void avanzarCiclo();
-
 	bool aggPlantas();
 	bool reproducirPlantas();
-
-//	bool aggHerbivoros();
 	bool aggEntidad(char entidad);
-//	bool turnoCarnivoros();
 	bool turnoEntidad(char entidad, char presa);
 	bool buscarEntidad(char entidad, vector<pair<int,int>>& posicEntidad);
 	bool entidadCome(char presa, char entidad, int f, int c);
 	bool entidadMueve(int f, int c, char entidad);
 	int *verificarEsquinas();
+	void contadorEntidad(char entidad);
+	void inicializarEstado();
 };
 
 

@@ -12,14 +12,8 @@
 #include <thread>
 #include <chrono>
 #include "generacionTablero.h"
-#include "movplantas.h"
-#include "movherbivoros.h"
-#include "movcarnivoros.h"
 #include "Ecosistema.h"
 using namespace std;
-
-int ciclo = 0;
-
 int main() {
     srand(time(NULL));
     int filas, columnas;
@@ -28,16 +22,20 @@ int main() {
 
     Ecosistema eco (filas, columnas);
 
-    //aggPlantas(tablero, filas, columnas, 0);  // estado inicial: planta en posicion aleatoria
     cout << "\n=== ESTADO INICIAL ===" << endl;
-    eco.aggPlantas();
+    eco.inicializarEstado();
     eco.imprimirTablero();
     while(true) {
     	this_thread::sleep_for(chrono::seconds(5));
     	eco.avanzarCiclo();
     	eco.imprimirTablero();
-
     }
-
     return 0;
 }
+/*
+ * Energia 100 bajar 10 de energia cada ciclo
+ * Comer +20 de energia
+ * Edad plantas: 20
+ * Edad carnívoros: 20
+ * Edad herbívoros: 20
+ */
