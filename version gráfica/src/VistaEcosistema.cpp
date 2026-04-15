@@ -6,11 +6,6 @@ VistaEcosistema::VistaEcosistema(QWidget *parent)
     : QWidget(parent), eco(nullptr)
 {
     actualizarIconos();
-    /*
-    planta = QPixmap(":/imagenes/bloodroses.png");
-    herbivoro = QPixmap(":/imagenes/teemo.png");
-    carnivoro = QPixmap(":/imagenes/warwick.png");
-    */
 }
 
 void VistaEcosistema::setEcosistema(Ecosistema *e)
