@@ -494,29 +494,11 @@ void Ecosistema::avanzarCiclo() {
         }
     }
 
-    if (ciclo % 2 == 0) {
-        if (aggEntidad('H')) {
-            cout << "Un herbívoro llegó al ecosistema" << endl;
-        }
-        else {
-            cout << "No hay esquinas libres para que ingrese un herbívoro." << endl;
-        }
-    }
-
     /*Agregar carnivoros cada 4 ciclos*/
     if (ciclo % 4 == 0) {
         if(aggEntidad('C')) {
             limpiarMuertas();
             mostrarEntidades();
-            cout << "Llegó un carnívoro al ecosistema." << endl;
-        }
-        else {
-            cout << "No hay esquinas libres para que ingrese un carnívoro." << endl;
-        }
-    }
-
-    if (ciclo % 4 == 0) {
-        if (aggEntidad('C')) {
             cout << "Llegó un carnívoro al ecosistema." << endl;
         }
         else {
