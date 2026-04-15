@@ -16,7 +16,7 @@ void VistaEcosistema::setEcosistema(Ecosistema *e)
 
 void VistaEcosistema::actualizarIconos()
 {
-    //planta = QPixmap(":/imagenes/planta.png");
+    //plantas
     if (gSettings.plantaVariante == 0)
         planta = QPixmap(":/imagenes/honeyfruit.png");
     else
