@@ -1,12 +1,15 @@
 #include "ventanaprincipal.h"
 #include "ui_ventanaprincipal.h"
 
+//obs: usamos emit pq es muy util simplemente poder conectar con un connect donde se necesite
+
 //construcotr de la ventana principal
 VentanaPrincipal::VentanaPrincipal(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::VentanaPrincipal)
 {
     /*
+     * construye toda la interfaaz automaticamente desde el .ui
      * crea todos los widgets (botones, labels, etc.)
      * los posiciona según el diseñador
      * los conecta con ui->btnAlgo
