@@ -216,6 +216,11 @@ bool Ecosistema::aggPlantas() {
             int nj = (c + j) % columnas;
             if (tablero[ni][nj] == ' ') {
                 tablero[ni][nj] = 'P';
+
+                EntidadViva* nuevaPlanta = crearEntidad('P', ni, nj);
+                if (nuevaPlanta != NULL) {
+                    entidades.push_back(nuevaPlanta);
+                }
                 return true;
             }
         }
@@ -227,6 +232,11 @@ bool Ecosistema::aggEntidad(char entidad) {
     int *esquina;
     if ((esquina = verificarEsquinas()) != NULL) {
         tablero[esquina[0]][esquina[1]] = entidad;
+
+        EntidadViva* nuevaEntidad = crearEntidad(entidad, esquina[0], esquina[1]);
+        if (nuevaEntidad != NULL) {
+            entidades.push_back(nuevaEntidad);
+        }
         return true;
     }
     return false;
@@ -349,8 +359,22 @@ bool Ecosistema::entidadCome(char presa, char entidad, int f, int c) {
 
             if (ni >= 0 && ni < filas && nj >= 0 && nj < columnas) {
                 if (tablero[ni][nj] == presa) {
+
+                    EntidadViva* depredador = obtenerEntidad(f,c);
+                    EntidadViva* victima = obtenerEntidad(ni,nj);
+
                     tablero[ni][nj] = entidad;
                     tablero[f][c] = ' ';
+
+                    if (depredador != NULL) {
+                        depredador->ponerPosicion(ni,nj);
+
+                        int energiaActual = depredador->getEnergia();
+                        depredador->ponerEnergia(energiaActual + 20);
+                    }
+                    if (victima != NULL) {
+                        victima->muerte();
+                    }
                     return true;
                 }
             }
@@ -389,6 +413,12 @@ bool Ecosistema::entidadMueve(int f, int c, char entidad) {
                 if (tablero[ni][nj] == ' ') {
                     tablero[ni][nj] = entidad;
                     tablero[f][c] = ' ';
+
+                    EntidadViva* entidadAmover = obtenerEntidad(f,c);
+                    if (entidadAmover != NULL) {
+                        entidadAmover->ponerPosicion(ni,nj);
+                    }
+
                     return true;
                 }
             }
