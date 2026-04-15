@@ -146,7 +146,12 @@ int Ecosistema::contarEntidad(char entidad) const {
     return contador;
 }
 
+
 void Ecosistema::generarTablero() {
+    /*
+	 * Funcion que se encarga de generar el tablero con espacios
+	 *
+	 */
     int i, j;
     for (i = 0; i < filas; i++) {
         for (j = 0; j < columnas; j++) {
@@ -156,6 +161,9 @@ void Ecosistema::generarTablero() {
 }
 
 void Ecosistema::imprimirTablero() const {
+	/*
+	 * Funcion que se encarga de imprimir el tablero en pantalla
+	 */
     for (int i = 0; i < filas; i++) {
         for (int j = 0; j < columnas; j++) {
             std::cout << "+---";
@@ -180,7 +188,13 @@ void Ecosistema::inicializarEstado() {
     aggPlantas();
 }
 
+
 int* Ecosistema::verificarEsquinas() {
+	/*
+	 * Función que se encarga de verificar si las esquinas del tablero están ocupadas por alguna entidad
+	 * Valor de retorno:
+	 * puntero a vector de int que contiene [i,j]
+	 */
     int i, j;
     static int esquina[2];
     int *p = esquina;
@@ -229,6 +243,10 @@ bool Ecosistema::aggPlantas() {
 }
 
 bool Ecosistema::aggEntidad(char entidad) {
+	/*
+	 * Función que se encarga de simular la llegada de un herbívoro/carnívoro al ecosistema a través de las esquinas del tablero
+	 *
+	 */
     int *esquina;
     if ((esquina = verificarEsquinas()) != NULL) {
         tablero[esquina[0]][esquina[1]] = entidad;
@@ -252,6 +270,10 @@ void Ecosistema::mostrarEntidades() const {
 }
 
 bool Ecosistema::reproducirPlantas() {
+	/*
+	 * Función que se encarga de verificar si es posible reproducir plantas en el ciclo actual
+	 *
+	 */
     int i, j;
     bool existePlantaReproducible = false;
 
@@ -310,12 +332,15 @@ bool Ecosistema::reproducirPlantas() {
         filaDestino = rand() % filas;
         columnaDestino = rand() % columnas;
 
+		/*la reproducción no es válida si el destino está a más de una fila de distancia por arriba o abajo*/
         if (filaDestino - filaRandom > 1 || filaDestino - filaRandom < -1) {
             reproduccionValida = false;
         }
+		/*la reproducción no es válida si el destino está a más de una columna de distancia por derecha o izquierda*/
         else if (columnaDestino - columnaRandom > 1 || columnaDestino - columnaRandom < -1) {
             reproduccionValida = false;
         }
+		/*no se puede sobrescribir la misma planta en el mismo lugar*/
         else if (filaDestino == filaRandom && columnaDestino == columnaRandom) {
             reproduccionValida = false;
         }
@@ -335,7 +360,10 @@ bool Ecosistema::reproducirPlantas() {
     return true;
 }
 
-bool Ecosistema::buscarEntidad(char entidad, std::vector<std::pair<int,int>>& posicEntidad) {
+bool Ecosistema::buscarEntidad(char entidad, vector<pair<int,int>>& posicEntidad) {
+	/*
+	 * Función que se encarga de recorrer la matriz para seleccionar un herbívoro/carnívoro para luego evaluar si puede comer una planta
+	 */
     int i, j;
     for (i = 0; i < filas; i++) {
         for (j = 0; j < columnas; j++) {
@@ -348,15 +376,28 @@ bool Ecosistema::buscarEntidad(char entidad, std::vector<std::pair<int,int>>& po
 }
 
 bool Ecosistema::entidadCome(char presa, char entidad, int f, int c) {
+	/*
+	 * Función que se encarga de verificar si el herbívoro/carnívoro correspondiente puede comer una planta
+	 * Parámetros:
+	 * matriz -> tablero del simulador
+	 * filas -> numero de filas de la matriz
+	 * columnas -> numero de columnas de la matriz
+	 * f -> primera coordenada de la ubicación del herbívoro/carnívoro
+	 * c -> segunda coordenada de la ubicación del herbívoro/carnívoro
+	 */
+
+	// Buscamos solo en las celdas vecinas (de -1 a +1 en filas y columnas)
     for (int i = -1; i <= 1; i++) {
         for (int j = -1; j <= 1; j++) {
             if (i == 0 && j == 0) {
+        		/*skipeamos i = 0 y j = 0 porque es la celda actual*/
                 continue;
             }
 
             int ni = f + i;
             int nj = c + j;
 
+        	// Verificamos que las coordenadas vecinas no se salgan de la matriz
             if (ni >= 0 && ni < filas && nj >= 0 && nj < columnas) {
                 if (tablero[ni][nj] == presa) {
 
@@ -400,6 +441,10 @@ void Ecosistema::limpiarMuertas() {
 
 
 bool Ecosistema::entidadMueve(int f, int c, char entidad) {
+	/*
+	 * Función que busca un espacio vacío alrededor de un herbívoro/carnívoro para moverlo.
+	 */
+	// Buscamos en las celdas vecinas (de -1 a +1)
     for (int i = -1; i <= 1; i++) {
         for (int j = -1; j <= 1; j++) {
             if (i == 0 && j == 0) {
@@ -409,23 +454,24 @@ bool Ecosistema::entidadMueve(int f, int c, char entidad) {
             int ni = f + i;
             int nj = c + j;
 
+			/*skipeamos i = 0 y j = 0 porque es la celda actual*/
             if (ni >= 0 && ni < filas && nj >= 0 && nj < columnas) {
                 if (tablero[ni][nj] == ' ') {
-                    tablero[ni][nj] = entidad;
-                    tablero[f][c] = ' ';
+                    tablero[ni][nj] = entidad;    // La entidad se mueve a la nueva celda
+                    tablero[f][c] = ' ';    // Deja su posición original vacía
 
                     EntidadViva* entidadAmover = obtenerEntidad(f,c);
                     if (entidadAmover != NULL) {
                         entidadAmover->ponerPosicion(ni,nj);
                     }
 
-                    return true;
+                    return true;    // Se movió con éxito
                 }
             }
         }
     }
 
-    return false;
+    return false;    // Retorna falso si estaba rodeado o si no encontró herbívoros/carnívoros
 }
 
 void Ecosistema::contadorEntidad(char entidad) {
@@ -440,26 +486,35 @@ void Ecosistema::contadorEntidad(char entidad) {
     }
 
     if (entidad == 'H') {
-        cout << "La cantidad de herbívoros es: " << contador << std::endl;
+        cout << "La cantidad de herbívoros es: " << contador << endl;
     }
     else if (entidad == 'C') {
-        cout << "La cantidad de carnívoros es: " << contador << std::endl;
+        cout << "La cantidad de carnívoros es: " << contador << endl;
     }
     else {
-        cout << "La cantidad de plantas es: " << contador << std::endl;
+        cout << "La cantidad de plantas es: " << contador << endl;
     }
 }
 
 bool Ecosistema::turnoEntidad(char entidad, char presa) {
-    bool hizoAlgo = false;
-    vector<pair<int,int>> posicEntidad;
+	/*
+	 * Función que se encarga de realizar las acciones correspondientes a los carnívoros/herbívoros
+	 *
+	 */
+    bool hizoAlgo = false;				  // bandera para indicar si un carnívoro/herbívoro ya actuó o no
+    vector<pair<int,int>> posicEntidad;   // vector donde se guardarán las posiciones de los herbivoros/carnivoros en el tablero en cada ciclo
 
     if (buscarEntidad(entidad, posicEntidad)) {
         for (size_t k = 0; k < posicEntidad.size(); k++) {
+
+			/*Se itera sobre el vector con las posiciones de la entidad y se guarda el valor de cada coordenada individualmente
+			 * en f (fila) y c (columna)*/
+            
             int f = posicEntidad[k].first;
             int c = posicEntidad[k].second;
 
             if (tablero[f][c] != entidad) {
+				/*En caso que en esa posicion no esté una entidad pasamos al siguiente*/
                 continue;
             }
 
