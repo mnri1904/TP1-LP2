@@ -40,7 +40,7 @@
   <widget class="QComboBox" name="cbCarnivoro">
    <property name="geometry">
     <rect>
-     <x>150</x>
+     <x>210</x>
      <y>170</y>
      <width>76</width>
      <height>26</height>
@@ -76,7 +76,7 @@
   <widget class="QComboBox" name="cbHerbivoro">
    <property name="geometry">
     <rect>
-     <x>150</x>
+     <x>210</x>
      <y>130</y>
      <width>76</width>
      <height>26</height>
@@ -86,11 +86,91 @@
   <widget class="QComboBox" name="cbPlanta">
    <property name="geometry">
     <rect>
-     <x>150</x>
+     <x>210</x>
      <y>90</y>
      <width>76</width>
      <height>26</height>
     </rect>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label">
+   <property name="geometry">
+    <rect>
+     <x>120</x>
+     <y>90</y>
+     <width>63</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">color: white;</string>
+   </property>
+   <property name="text">
+    <string>Plantas:</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_2">
+   <property name="geometry">
+    <rect>
+     <x>92</x>
+     <y>130</y>
+     <width>81</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">color: white;</string>
+   </property>
+   <property name="text">
+    <string>Herbivoros:</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_3">
+   <property name="geometry">
+    <rect>
+     <x>100</x>
+     <y>170</y>
+     <width>91</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">color: white;</string>
+   </property>
+   <property name="text">
+    <string>Carnivoros:</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_4">
+   <property name="geometry">
+    <rect>
+     <x>80</x>
+     <y>20</y>
+     <width>31</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">color: white;</string>
+   </property>
+   <property name="text">
+    <string>Filas</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_5">
+   <property name="geometry">
+    <rect>
+     <x>240</x>
+     <y>20</y>
+     <width>71</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">color: white;</string>
+   </property>
+   <property name="text">
+    <string>Columnas</string>
    </property>
   </widget>
  </widget>
