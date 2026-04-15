@@ -31,6 +31,8 @@ void VistaEcosistema::setEcosistema(Ecosistema *e)
  *
  * Usa la variable global gSettings para decidir qué imagen usar
  * para plantas, herbívoros y carnívoros.
+ *
+ * Se decidió usar QPixmap porque soporta transparencia. 
  */
 void VistaEcosistema::actualizarIconos()
 {
