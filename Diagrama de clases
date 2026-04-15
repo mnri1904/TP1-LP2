@@ -66,3 +66,8 @@ classDiagram
         -muertePorEnergia() void
         -limpiarMuertas() void
     }
+Flechas con triángulo vacío (<|--): Representan la Herencia. Indican que Planta, Herbivoro y Carnivoro "son una" EntidadViva y heredan todos sus atributos (fila, columna, etc.). El asterisco * en getSimbolo() señala que es un método virtual puro o polimórfico.
+
+Flecha con rombo vacío (o--): Representa la Agregación. Indica que el Ecosistema "tiene o contiene" múltiples objetos del tipo EntidadViva dentro de su vector dinámico, pero la definición de la entidad existe de forma independiente.
+
+Signos más (+), menos (-) y numeral (#): Reflejan el encapsulamiento. El + son los métodos públicos accesibles desde el main, el - son atributos/métodos privados de la lógica interna, y el # (protected) permite que las clases hijas accedan a las variables de la clase padre.
