@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>VentanaSimulacion</class>
+ <widget class="QMainWindow" name="VentanaSimulacion">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>800</width>
+    <height>600</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">QMainWindow {
+    border-image: url(:/imagenes/forest.jpg) 0 0 0 0 stretch stretch;
+}</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <widget class="QLabel" name="lblPlantas">
+    <property name="geometry">
+     <rect>
+      <x>40</x>
+      <y>390</y>
+      <width>63</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Plantas</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="lblHerbivoros">
+    <property name="geometry">
+     <rect>
+      <x>230</x>
+      <y>390</y>
+      <width>81</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Herbivoros</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="lblCarnivoros">
+    <property name="geometry">
+     <rect>
+      <x>450</x>
+      <y>390</y>
+      <width>81</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Carnivoros</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="lblCiclo">
+    <property name="geometry">
+     <rect>
+      <x>630</x>
+      <y>390</y>
+      <width>91</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Ciclo actual</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="btnIniciar">
+    <property name="geometry">
+     <rect>
+      <x>70</x>
+      <y>430</y>
+      <width>151</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton {
+    border-image: url(:/imagenes/botoniniciar.png);
+}</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="btnPausar">
+    <property name="geometry">
+     <rect>
+      <x>310</x>
+      <y>430</y>
+      <width>151</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton {
+    border-image: url(:/imagenes/botonpausar.png);
+}</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="btnReiniciar">
+    <property name="geometry">
+     <rect>
+      <x>530</x>
+      <y>430</y>
+      <width>151</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton {
+    border-image: url(:/imagenes/botonreiniciar.png);
+}</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="btnMenu">
+    <property name="geometry">
+     <rect>
+      <x>290</x>
+      <y>490</y>
+      <width>191</width>
+      <height>61</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton {
+    border-image: url(:/imagenes/botonvolveralmenu.png);
+}</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QTableWidget" name="tableTablero">
+    <property name="geometry">
+     <rect>
+      <x>150</x>
+      <y>15</y>
+      <width>500</width>
+      <height>350</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background: transparent;</string>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>800</width>
+     <height>26</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
