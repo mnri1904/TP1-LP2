@@ -1,0 +1,68 @@
+classDiagram
+    %% Relaciones de Herencia
+    EntidadViva <|-- Planta
+    EntidadViva <|-- Herbivoro
+    EntidadViva <|-- Carnivoro
+    
+    %% Relación de Agregación (El Ecosistema contiene entidades)
+    Ecosistema o-- EntidadViva : contiene
+
+    class EntidadViva {
+        <<abstract>>
+        #int fila
+        #int columna
+        #int energia
+        #int edad
+        #bool viva
+        +EntidadViva(int f, int c, int e)
+        +getFila() int
+        +getColumna() int
+        +ponerPosicion(int f, int c) void
+        +getEnergia() int
+        +ponerEnergia(int energ) void
+        +getEdad() int
+        +aumentarEdad() void
+        +estadoVida() bool
+        +muerte() void
+        +getSimbolo()* char
+    }
+
+    class Planta {
+        +Planta(int f, int c)
+        +getSimbolo() char
+    }
+
+    class Herbivoro {
+        +Herbivoro(int f, int c)
+        +getSimbolo() char
+    }
+
+    class Carnivoro {
+        +Carnivoro(int f, int c)
+        +getSimbolo() char
+    }
+
+    class Ecosistema {
+        -int filas
+        -int columnas
+        -int ciclo
+        -vector~vector~char~~ tablero
+        -vector~EntidadViva*~ entidades
+        +Ecosistema(int f, int c)
+        +~Ecosistema()
+        +getFilas() int
+        +getColumnas() int
+        +getCiclo() int
+        +inicializarEstado() void
+        +avanzarCiclo() void
+        +imprimirTablero() void
+        +mostrarEstadoEntidades() void
+        -generarTablero() void
+        -reproducirPlantas() bool
+        -turnoEntidad(char entidad, char presa) bool
+        -entidadesEnvejecen() void
+        -restarEnergia() void
+        -muertePorEdad() void
+        -muertePorEnergia() void
+        -limpiarMuertas() void
+    }
